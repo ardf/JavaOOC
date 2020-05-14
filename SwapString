@@ -1,0 +1,77 @@
+import java.awt.event.*;
+import javax.swing.*;
+import java.awt.*;
+
+public class SD implements ActionListener {
+    JFrame f;
+    JLabel l1,l2;
+    JTextField src,dst;
+    JButton right,left;
+
+    SD(){
+        f = new JFrame("Source-Destination");
+        f.setBounds(400, 150, 400, 300);
+        f.setBackground(Color.WHITE);
+        f.setLayout(null);
+        f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+        l1 = new JLabel("Source");
+        l1.setFont(new Font("serif", Font.PLAIN, 15));
+        l1.setBounds(20, 30, 100, 20);
+        f.add(l1);
+
+        l2 = new JLabel("Destination");
+        l2.setFont(new Font("serif", Font.PLAIN, 15));
+        l2.setBounds(220, 30, 100, 20);
+        f.add(l2);
+
+        src = new JTextField("");
+        src.setBounds(20,60,140,30);
+        src.setBackground(Color.white);
+        src.setFont(new Font("serif", Font.PLAIN, 20));
+        f.add(src);
+
+        dst = new JTextField("");
+        dst.setBounds(220,60,140,30);
+        dst.setBackground(Color.white);
+        dst.setFont(new Font("serif", Font.PLAIN, 20));
+        f.add(dst);
+
+        right = new JButton(">");
+        right.setBounds(210, 110, 50, 25);
+        right.setBackground(Color.gray);
+        right.setForeground(Color.WHITE);
+        right.addActionListener(this);
+        f.add(right);
+
+        left = new JButton("<");
+        left.setBounds(130, 110, 50, 25);
+        left.setBackground(Color.gray);
+        left.setForeground(Color.WHITE);
+        left.addActionListener(this);
+        f.add(left);
+
+
+
+        f.setVisible(true);
+    }
+    public static void main(String[] args){
+        new SD();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource()==right){
+            if(src.getText().equals("")==false){
+                dst.setText(src.getText());
+                src.setText("");
+            }
+        }
+        if(e.getSource()==left){
+            if(dst.getText().equals("")==false){
+                src.setText(dst.getText());
+                dst.setText("");
+            }
+        }
+    }
+}
